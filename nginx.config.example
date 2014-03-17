@@ -1,0 +1,14 @@
+server {
+  listen 443 default_server;
+
+  location /status_stat {
+     default_type 'text/html'; 
+     content_by_lua_file '/path/to/show_statuses_stat.lua';
+  }
+
+  location / {
+    proxy_pass https://_YOUR_TARGET_LOCATION_;
+    log_by_lua_file '/path/to/collect_statuses.lua';
+  }
+
+}
