@@ -15,11 +15,11 @@ if ngx.req.get_headers()["Content-Type"] == "application/json" then
 else
   -- Reply HTML in other ways
   local html_reply = {}
-  table.insert html_reply, "<html><head><title>Nginx status statistic</title></head><body>")
+  table.insert(html_reply, "<html><head><title>Nginx status statistic</title></head><body>")
       
   for s, c in pairs(data) do
-    table.insert html_reply, "<p> status <b>" .. s .. "</b> has occurred " .. tostring(c) .. " times" .. "</p>" )
+    table.insert(html_reply, "<p> status <b>" .. s .. "</b> has occurred " .. tostring(c) .. " times" .. "</p>" )
   end
-  table.insert html_reply, "</body></html>")
-  ngx.say html_reply)
+  table.insert(html_reply, "</body></html>")
+  ngx.say(html_reply)
 end
