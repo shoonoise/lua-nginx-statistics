@@ -1,7 +1,6 @@
 from urlparse import urljoin
 import requests
 import unittest
-import time
 
 HOST = "http://localhost"
 
@@ -24,7 +23,6 @@ class Base(unittest.TestCase):
             status = fn._testMethodName.split("_")[-1]
             current = Base._get_current_stat(status)
             requests.get(urljoin(HOST, status), allow_redirects=False)
-            time.sleep(1)
             new = Base._get_current_stat(status)
             unittest.TestCase.assertEqual(fn, new - current, 1,
                                           "Counter for status %s should be %s, but %s" % (status, current + 1, new))
