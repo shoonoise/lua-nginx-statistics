@@ -3,7 +3,7 @@ import requests
 import unittest
 import time
 
-HOST = "http://192.168.33.11"
+HOST = "http://localhost"
 
 
 class Base(unittest.TestCase):
