@@ -1,4 +1,4 @@
-local json = require "json"
+local json = require "cjson"
 
 local stat_dict = ngx.shared.log_dict
 local data = {}
