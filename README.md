@@ -12,7 +12,7 @@ See `nginx.conf` for example.
 
 ## Try it with docker
 
-### Dockerfiles
+### Build it from Dockerfiles
 
 * Install [Docker](https://www.docker.io/)
 * clone this repo
