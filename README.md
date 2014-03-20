@@ -10,10 +10,9 @@ See `nginx.conf` for example.
 
 `show_statuses_stat.lua` show collected counters in html, or JSON(request "Content-Type" should be "application/json").
 
-Try it with docker
---------------------
+## Try it with docker
 
-## Dockerfiles
+### Dockerfiles
 
 * Install [Docker](https://www.docker.io/)
 * clone this repo
