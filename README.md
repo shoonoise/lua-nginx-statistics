@@ -29,7 +29,7 @@ You also can run container with test suite:
 
 * cd in tests directory
 * Build image `docker build -t ngx_test_img .`
-* Run container `docker -i -t --link=ngx_stat:web ngx_test_img`
+* Run container `docker run -i -t --link=ngx_stat:web ngx_test_img`
 
 Last command should return result of tests.
 
