@@ -38,16 +38,16 @@ function get_status_code_class(status_code)
   end
 end
 
-for i, gr in pairs(stat) do
+for i, _ in pairs(stat) do
   if i == "status" then
-    status_class = get_status_code_class(status)
+    local status_class = get_status_code_class(status)
 
     if not stat["status"][location_group] then
       stat["status"][location_group] = init_location_group()
     end
 
     if stat["status"][location_group][status_class] then
-      old_count = stat["status"][location_group][status_class]
+      local old_count = stat["status"][location_group][status_class]
       stat["status"][location_group][status_class] = old_count + 1
     end
   end
