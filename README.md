@@ -18,7 +18,7 @@ See `nginx.conf` for example.
 * clone this repo
 * cd into repo's root
 * Build image `docker build -t ngx_stat_img .`
-* Run container `docker run -p 80:80 -name ngx_stat -d ngx_stat_img`
+* Run container `docker run -p 80:80 --name=ngx_stat -d ngx_stat_img`
 
 Last command return container id, so you can use it to check logs by `docker logs _container_id_`.
 
