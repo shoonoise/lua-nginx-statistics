@@ -32,3 +32,7 @@ You also can run container with test suite:
 * Run container `docker -i -t --link=ngx_stat:web ngx_test_img`
 
 Last command should return result of tests.
+
+### Get image from docker index
+
+You can just pull image from index.docker.io by `docker pull  shoonoise/lua-ngx-statuses-collector`.
