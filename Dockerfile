@@ -21,4 +21,4 @@ ADD show_statuses_stat.lua /usr/share/nginx/
 
 EXPOSE 80
 
-CMD nginx && tail -f /usr/share/nginx/error.log
+CMD nginx
