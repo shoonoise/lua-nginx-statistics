@@ -23,7 +23,7 @@ See `nginx.conf` for example.
 Last command return container id, so you can use it to check logs by `docker logs _container_id_`.
 
 To check that it is works go to `http://localhost` and other location like `http://localhost/304` or `http://localhost/500`,
-and on `http://localhost/status_stat` to get statistic page.
+and on `http://localhost/status_stat` to get statistic page or `curl -H "Content-Type: application/json" http://localhost/status_stat` to get JSON.
 
 You also can run container with test suite:
 
@@ -37,7 +37,7 @@ Last command should return result of tests.
 
 You can just pull image from index.docker.io by `docker pull  shoonoise/lua-ngx-statuses-collector`.
 
-### Tips and Tricks
+## Tips and Tricks
 
 1. You may want to use lua [cjson](http://www.kyne.com.au/~mark/software/lua-cjson-manual.html) module instead of `liblua5.1-json` for performance purpose.
 Just install cjson from [ppa](https://launchpad.net/ubuntu/+source/lua-cjson) and replace `local json = require("json")` to `local json = require("cjson")`
