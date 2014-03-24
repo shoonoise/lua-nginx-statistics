@@ -1,4 +1,4 @@
-local json = require("cjson")
+local json = require("json")
 local stat_dict = ngx.shared.stat_dict
 local status = tostring(ngx.status)
 local location_group = ngx.var.stat_counter
@@ -54,4 +54,4 @@ for i, _ in pairs(stat) do
 end
 
 stat_dict:set("stat", json.encode(stat))
-ngx.log(ngx.ALERT, " stat ", json.encode(stat))
+ngx.log(ngx.INFO, " stat ", json.encode(stat))
