@@ -2,17 +2,12 @@
 #
 # VERSION 1.0
 
-
-FROM ubuntu:12.04
-
-# Prepare
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common python-software-properties vim git curl tmux
+FROM nikicat/ubuntu:12.04
 
 # Nginx
 RUN add-apt-repository ppa:nginx/stable
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make liblua5.1-json nginx-extras
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y liblua5.1-json nginx-extras
 
 # Statistic module
 ADD nginx.conf /etc/nginx/nginx.conf
