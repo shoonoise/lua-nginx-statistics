@@ -1,3 +1,4 @@
+module ("collect_statuses", package.seeall)
 local json = require("json")
 local stat_dict = ngx.shared.stat_dict
 local status = tostring(ngx.status)
