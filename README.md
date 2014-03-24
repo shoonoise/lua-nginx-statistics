@@ -36,3 +36,13 @@ Last command should return result of tests.
 ### Get image from docker index
 
 You can just pull image from index.docker.io by `docker pull  shoonoise/lua-ngx-statuses-collector`.
+
+### Tips and Tricks
+
+1. You may want to use lua [cjson](http://www.kyne.com.au/~mark/software/lua-cjson-manual.html) module instead of `liblua5.1-json` for performance purpose.
+Just install cjson from [ppa](https://launchpad.net/ubuntu/+source/lua-cjson) and replace `local json = require("json")` to `local json = require("cjson")`
+in lua scripts.
+
+2. Set `$stat_counter` nginx variable in config to group statuses.
+
+For example set `$stat_counter $uri` to collect statuses for each uri separately.
