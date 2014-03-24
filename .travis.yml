@@ -7,7 +7,7 @@ install:
   - sudo cp *.lua /usr/share/nginx/
 
 before_script:
-  - sudo apt-get install -y python-requests
+  - pip install requests
 
 script:
   - python tests/tests.py -v
