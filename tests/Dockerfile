@@ -5,7 +5,7 @@
 FROM ubuntu:12.04
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-requests
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-requests vim
 ADD tests.py /home/
 
 CMD python /home/tests.py -v
