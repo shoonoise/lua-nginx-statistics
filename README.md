@@ -8,7 +8,7 @@ See `nginx.conf` for example.
 
 `collect_statuses.lua` module collect status counters for requests across location with `log_by_lua_file 'collect_statuses.lua';` directive.
 
-`show_statuses_stat.lua` show collected counters in html, or JSON(request "Content-Type" should be "application/json").
+`show_statuses_stat.lua` show collected counters in html or JSON(request "Content-Type" should be "application/json").
 
 ## Try it with docker
 
@@ -35,7 +35,7 @@ Last command should return result of tests.
 
 ### Get image from docker index
 
-You can just pull image from index.docker.io by `docker pull  shoonoise/lua-ngx-statuses-collector`.
+You can just pull image from index.docker.io by `docker pull shoonoise/lua-nginx-statistics`.
 
 ## Tips and Tricks
 
