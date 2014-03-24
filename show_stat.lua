@@ -1,6 +1,6 @@
 local json = require "json"
 local stat_dict = ngx.shared.stat_dict
-local collect_module = require "collect_statuses"
+local collect_module = require "collect_stats"
 
 ser_data = stat_dict:get("stat")
 

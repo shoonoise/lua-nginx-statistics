@@ -15,7 +15,7 @@ class Base(unittest.TestCase):
 
     @staticmethod
     def _get_current_stat(name):
-        reply = requests.get(urljoin(HOST, "status_stat"),
+        reply = requests.get(urljoin(HOST, "stat"),
                              headers={'content-type': 'application/json'})
         data = json.loads(reply.content)["status"]
         if not data.get(name):

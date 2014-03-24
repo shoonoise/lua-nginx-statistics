@@ -11,7 +11,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y liblua5.1-json nginx-extra
 
 # Statistic module
 ADD nginx.conf /etc/nginx/nginx.conf
-ADD collect_statuses.lua /usr/share/nginx/
+ADD collect_stats.lua /usr/share/nginx/
 ADD show_statuses_stat.lua /usr/share/nginx/
 
 EXPOSE 80

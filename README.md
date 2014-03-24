@@ -6,9 +6,9 @@ Nginx statistic module
 Nginx Lua module to collect reply status counters.
 See `nginx.conf` for example.
 
-`collect_statuses.lua` module collect status counters for requests across location with `log_by_lua_file 'collect_statuses.lua';` directive.
+`collect_statuses.lua` module collect status counters for requests across location with `log_by_lua_file 'collect_stats.lua';` directive.
 
-`show_statuses_stat.lua` show collected counters in html or JSON(request "Content-Type" should be "application/json").
+`show_stat.lua` show collected counters in html or JSON(request "Content-Type" should be "application/json").
 
 ## Try it with docker
 
@@ -23,7 +23,7 @@ See `nginx.conf` for example.
 Last command return container id, so you can use it to check logs by `docker logs _container_id_`.
 
 To check that it is works go to `http://localhost` and other location like `http://localhost/304` or `http://localhost/500`,
-and on `http://localhost/status_stat` to get statistic page or `curl -H "Content-Type: application/json" http://localhost/status_stat` to get JSON.
+and on `http://localhost/status_stat` to get statistic page or `curl -H "Content-Type: application/json" http://localhost/stat` to get JSON.
 
 You also can run container with test suite:
 
