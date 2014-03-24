@@ -17,7 +17,11 @@ class Base(unittest.TestCase):
     def _get_current_stat(name):
         reply = requests.get(urljoin(HOST, "status_stat"),
                              headers={'content-type': 'application/json'})
-        return json.loads(reply.content).get(name)
+        data = json.loads(reply.content)["status"]
+        if not data.get(name):
+            return False
+        else:
+            return data[name].get("%sxx" % name[0])
 
     def _check_counter(fn):
         """Make a little magic to avoid code duplication.
@@ -25,6 +29,8 @@ class Base(unittest.TestCase):
         def wrapper(fn):
             status = fn._testMethodName.split("_")[-1]
             current = Base._get_current_stat(status)
+            if not current:
+                current = 0
             requests.get(urljoin(HOST, status), allow_redirects=False)
             time.sleep(1)
             new = Base._get_current_stat(status)
