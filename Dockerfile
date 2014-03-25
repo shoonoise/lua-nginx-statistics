@@ -13,6 +13,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y liblua5.1-json nginx-extra
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD collect_stats.lua /usr/share/nginx/
 ADD show_statuses_stat.lua /usr/share/nginx/
+RUN echo "daemon off;" >> /ect/nginx.conf
 
 EXPOSE 80
 
