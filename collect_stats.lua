@@ -1,4 +1,4 @@
-module ("collect_stat", package.seeall)
+module ("collect_stats", package.seeall)
 local json = require("json")
 local stat_dict = ngx.shared.stat_dict
 local status = tostring(ngx.status)
@@ -56,3 +56,20 @@ end
 
 stat_dict:set("stat", json.encode(stat))
 ngx.log(ngx.INFO, " stat ", json.encode(stat))
+
+local timings_dict = ngx.shared.log_dict
+local upstream_time = tonumber(ngx.var.upstream_response_time)
+
+function init_timings()
+  return {["0-100"]    = 0,
+          ["100-500"]  = 0,
+          ["500-1000"] = 0,
+          ["1000-inf"] = 0}
+end
+
+if timings_dict then
+  timings = json.encode(timings_dict)
+else
+  timings = init_timings()
+end
+
