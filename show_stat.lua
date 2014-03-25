@@ -12,7 +12,7 @@ end
 data = json.decode(ser_data)
 
 -- Build _total field
-local _total = collect_module.init_location_group()
+local _total = collect_module.init_location_group("status")
 for _, v in pairs(data["status"]) do
   for s, c in pairs(v) do
     _total[s] = _total[s] + c
