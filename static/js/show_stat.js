@@ -3,7 +3,6 @@
  */
 
 $( document ).ready(function() {
-
     $.getJSON( "/stat", function( data ) {
         var statistic = function () {
             var main = "<h1>Nginx statistic page</h1>";
@@ -16,12 +15,11 @@ $( document ).ready(function() {
                         counters_list += "<li>" + "<b>" + s + "</b>" +" status was occurred " + count + " times " + "</li>";
                     });
                     counters_list += "</ul>";
-                    main += counters_list
+                    main += counters_list;
                 })
             });
             return main;
         };
         $("body").append(statistic);
     });
-
 });
