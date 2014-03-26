@@ -6,9 +6,20 @@ Nginx statistic module
 Nginx Lua module to collect reply status counters.
 See `nginx.conf` for example.
 
-`collect_statuses.lua` module collect status counters for requests across location with `log_by_lua_file 'collect_stats.lua';` directive.
+`collect_statuses.lua` module collect statistic counters for requests across location with `log_by_lua_file 'collect_stats.lua';` directive.
 
-`show_stat.lua` show collected counters in html or JSON(request "Content-Type" should be "application/json").
+`show_stat.lua` response for JSON reply.
+
+## Try it
+
+* Clone this repository
+* Copy \*.lua files from root to some path(`/usr/share/nginx/`, for example)
+
+Update your `nginx.conf`:
+
+* Add `log_by_lua_file '/path/to/collect_stats.lua';` directive in location from which you want collect statistic
+* Add new location to get statistic and put `/path/to/content_by_lua_file 'show_stat.lua'` directive inside
+* Enjoy!
 
 ## Try it with docker
 
