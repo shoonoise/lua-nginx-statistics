@@ -12,16 +12,19 @@ else
 end
 
 -- Build _total field
-local _total = common.init_location_group("status")
-ngx.log(ngx.INFO, "Total ", json.encode(_total))
-
-for _, v in pairs(data["status"]) do
-  for s, c in pairs(v) do
-    _total[s] = _total[s] + c
+local function build_total_field(stat_type)
+  local _total = common.init_location_group(stat_type)
+  ngx.log(ngx.INFO, "Total ", json.encode(_total))
+  for _, v in pairs(data[stat_type]) do
+    for s, c in pairs(v) do
+      _total[s] = _total[s] + c
+    end
   end
+  return _total
 end
-data["status"]["_total"] = _total
 
--- Reply JSON if content type application/json
+data["status"]["_total"] = build_total_field("status")
+data["timings"]["_total"] = build_total_field("timings")
+
 ngx.header.content_type = "application/json"
 ngx.say(json.encode(data))
