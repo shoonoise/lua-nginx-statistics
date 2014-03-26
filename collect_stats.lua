@@ -3,7 +3,7 @@ local common = require("common_stat")
 
 local stat_dict = ngx.shared.stat_dict
 local status = tostring(ngx.status)
-local upstream_time = tonumber(ngx.var.upstream_response_time)
+local upstream_time = tonumber(ngx.var.request_time) * 1000
 local location_group = ngx.var.stat_counter
 
 -- Set default group, if it's not defined by nginx variable
