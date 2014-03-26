@@ -17,7 +17,7 @@ See `nginx.conf` for example.
 
 Update your `nginx.conf`:
 
-* Add `log_by_lua_file '/path/to/collect_stats.lua';` directive in location from which you want collect statistic
+* Add `log_by_lua_file '/path/to/collect_stats.lua';` directive in location from which to you want collect statistic
 * Add new location to get statistic and put `/path/to/content_by_lua_file 'show_stat.lua'` directive inside
 * Enjoy!
 
@@ -34,7 +34,7 @@ Update your `nginx.conf`:
 Last command return container id, so you can use it to check logs by `docker logs _container_id_`.
 
 To check that it is works go to `http://localhost` and other location like `http://localhost/304` or `http://localhost/500`,
-and on `http://localhost/status_stat` to get statistic page or `curl -H "Content-Type: application/json" http://localhost/stat` to get JSON.
+and on `http://localhost/show_stat` to get statistic page or `curl http://localhost/stat` to get JSON.
 
 You also can run container with test suite:
 
