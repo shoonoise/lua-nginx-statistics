@@ -1,18 +1,20 @@
-local json = require "json"
+local json = require("json")
+local common = require("common_stat")
 local stat_dict = ngx.shared.stat_dict
-local collect_module = require "collect_stats"
 
 ser_data = stat_dict:get("stat")
 
-if not ser_data then
-  ngx.say("No data yet.")
-  ngx.exit(ngx.OK)
+if ser_data then
+  data = json.decode(ser_data)
+else
+  data = {["status"]  = {["_total"] = common.init_location_group("status")},
+          ["timings"] = {["_total"] = common.init_location_group("timings")}}
 end
 
-data = json.decode(ser_data)
-
 -- Build _total field
-local _total = collect_module.init_location_group("status")
+local _total = common.init_location_group("status")
+ngx.log(ngx.INFO, "Total ", json.encode(_total))
+
 for _, v in pairs(data["status"]) do
   for s, c in pairs(v) do
     _total[s] = _total[s] + c
@@ -20,29 +22,6 @@ for _, v in pairs(data["status"]) do
 end
 data["status"]["_total"] = _total
 
--- Build reply
-
-if ngx.req.get_headers()["Content-Type"] == "application/json" then
-  -- Reply JSON if content type application/json
-  ngx.header.content_type = "application/json"
-  ngx.say(json.encode(data))
-
-else
-  -- Reply HTML in other ways
-  local html_reply = {}
-
-  table.insert(html_reply, "<html><head><title>Nginx statistic</title></head><body>")
-  table.insert(html_reply, "<h1>Statuses:</h1>")
-
-  for group, value in pairs(data["status"]) do
-    table.insert(html_reply, "<h2>" .. group .. "</h2")
-    for s, c in pairs(value) do
-      table.insert(html_reply, "<b>" .. s .. "</b> has occurred "
-                               .. tostring(c) .. " times" .. "</p>")
-    end
-  end
-
-  table.insert(html_reply, "</body></html>")
-
-  ngx.say(html_reply)
-end
+-- Reply JSON if content type application/json
+ngx.header.content_type = "application/json"
+ngx.say(json.encode(data))
