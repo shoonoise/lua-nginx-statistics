@@ -11,10 +11,10 @@ if not location_group or location_group == "" then
   location_group = 'other_locations'
 end
 
-ser_stat = stat_dict:get("stat")
-if ser_stat then
-  ngx.log(ngx.INFO, "There is serialized data ", ser_stat)
-  stat_data = json.decode(ser_stat)
+json_stat = stat_dict:get("stat")
+if json_stat then
+  ngx.log(ngx.INFO, "There is serialized data ", json_stat)
+  stat_data = json.decode(json_stat)
 else
   ngx.log(ngx.INFO, " There is no data in shared dict ")
   stat_data = {["status"] = {[location_group] = common.init_location_group("status")},

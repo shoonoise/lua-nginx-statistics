@@ -2,10 +2,10 @@ local json = require("json")
 local common = require("common_stat")
 local stat_dict = ngx.shared.stat_dict
 
-ser_data = stat_dict:get("stat")
+json_data = stat_dict:get("stat")
 
-if ser_data then
-  data = json.decode(ser_data)
+if json_data then
+  data = json.decode(json_data)
 else
   data = {["status"]  = {["_total"] = common.init_location_group("status")},
           ["timings"] = {["_total"] = common.init_location_group("timings")}}
