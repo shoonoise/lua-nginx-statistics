@@ -13,7 +13,7 @@ $( document ).ready(function() {
                     var counters_list = '<h3> In '+ loc +':</h3>';
                     counters_list += "<ul>";
                     $.each(values, function (s, count) {
-                        counters_list += "<li>" + s + " was occurred " + count + " times " + "</li>"
+                        counters_list += "<li>" + "<b>" + s + "</b>" +" status was occurred " + count + " times " + "</li>";
                     });
                     counters_list += "</ul>";
                     main += counters_list
