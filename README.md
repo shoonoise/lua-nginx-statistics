@@ -34,7 +34,7 @@ Update your `nginx.conf`:
 Last command return container id, so you can use it to check logs by `docker logs _container_id_`.
 
 To check that it is works go to `http://localhost` and other location like `http://localhost/304` or `http://localhost/500`,
-and on `http://localhost/show_stat` to get statistic page or `curl http://localhost/stat` to get JSON.
+and on `http://localhost/show_stat/` to get statistic page or `curl http://localhost/stat` to get JSON.
 
 You also can run container with test suite:
 
