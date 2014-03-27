@@ -21,7 +21,7 @@ class Base(unittest.TestCase):
         locations = ["105", "204", "302", "404", "500"]
 
         for location in locations:
-            current_statuses = Base._get_current_stat("status")
+            current_statuses = self._get_current_stat("status")
             status_class = "%sxx" % location[0]
 
             if location in current_statuses:
@@ -30,7 +30,7 @@ class Base(unittest.TestCase):
                 current_counter = 0
             total_counter = current_statuses['_total'][status_class]
             requests.get(urljoin(HOST, '%s' % location), allow_redirects=False)
-            new_statuses = Base._get_current_stat("status")
+            new_statuses = self._get_current_stat("status")
             new_counter = new_statuses[location][status_class]
             new_total = new_statuses['_total'][status_class]
 
@@ -49,14 +49,14 @@ class Base(unittest.TestCase):
                            '1': '1000-inf'}
 
         for location, delay in expected_delays.items():
-            current_timings = Base._get_current_stat("timings")
+            current_timings = self._get_current_stat("timings")
             if location in current_timings:
                 current_counter = current_timings[location][delay]
             else:
                 current_counter = 0
             total_counter = current_timings['_total'][delay]
             requests.get(urljoin(HOST, '%s' % location))
-            new_timings = Base._get_current_stat("timings")
+            new_timings = self._get_current_stat("timings")
             new_counter = new_timings[location][delay]
             new_total = new_timings['_total'][delay]
 
