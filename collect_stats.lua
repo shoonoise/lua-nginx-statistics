@@ -53,9 +53,9 @@ local function get_histogram_state(t)
   ngx.log(ngx.INFO, "Get histogram state for ", t)
   if not t                     then return "undef"
   elseif t >= 0  and t < 100  then return "0-100"
-  elseif t > 100 and t < 500  then return "100-500"
-  elseif t > 500 and t < 1000 then return "500-1000"
-  elseif t > 1000             then return "1000-inf"
+  elseif t >= 100 and t < 500  then return "100-500"
+  elseif t >= 500 and t < 1000 then return "500-1000"
+  elseif t >= 1000             then return "1000-inf"
   end
 end
 
