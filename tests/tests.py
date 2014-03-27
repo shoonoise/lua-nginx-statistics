@@ -3,57 +3,63 @@ import requests
 import unittest
 import os
 import json
-import time
 
 HOST = "http://%s" % os.environ['WEB_PORT_80_TCP_ADDR']
 
 
 class Base(unittest.TestCase):
-    """
-    ATTENTION: Test name define a target status
-    """
 
     @staticmethod
-    def _get_current_stat(name):
+    def _get_current_stat(stat_type):
         reply = requests.get(urljoin(HOST, "stat"),
                              headers={'content-type': 'application/json'})
         reply.raise_for_status()
-        data = json.loads(reply.content)["status"]
-        if not data.get(name):
-            return False
-        else:
-            return data[name].get("%sxx" % name[0])
+        return json.loads(reply.content)[stat_type]
 
-    def _check_counter(fn):
-        """Make a little magic to avoid code duplication.
-           This wrapper generate test based on test method's name """
-        def wrapper(fn):
-            status = fn._testMethodName.split("_")[-1]
-            current = Base._get_current_stat(status)
-            if not current:
-                current = 0
-            requests.get(urljoin(HOST, status), allow_redirects=False)
-            time.sleep(1)
-            new = Base._get_current_stat(status)
-            unittest.TestCase.assertEqual(fn, new - current, 1,
-                                          "Counter for status %s should be %s, but %s" % (status, current + 1, new))
-        return wrapper
+    def test_statuses(self):
+        """Check statuses statistic."""
+        locations = ["105", "204", "302", "404", "500"]
 
-    @_check_counter
-    def test_get_204(self):
-        pass
+        for location in locations:
+            current_statuses = Base._get_current_stat("status")
+            status_class = "%sxx" % location[0]
 
-    @_check_counter
-    def test_get_500(self):
-        pass
+            if current_statuses.get(location):
+                current_counter = current_statuses[location][status_class]
+            else:
+                current_counter = 0
+            total_counter = current_statuses['_total'][status_class]
+            requests.get(urljoin(HOST, '%s' % location), allow_redirects=False)
+            new_counter = Base._get_current_stat("status")[location][status_class]
+            new_total = Base._get_current_stat("status")['_total'][status_class]
 
-    @_check_counter
-    def test_get_404(self):
-        pass
+            self.assertEqual(new_counter - current_counter, 1)
+            self.assertEqual(new_total - total_counter, 1)
 
-    @_check_counter
-    def test_get_302(self):
-        pass
+    def test_delays(self):
+        """Check timings statistic.
+           Disclaimer:
+           I believe there is no lag on local host.
+           So, on some cases you can't trust this tests on 100%"""
+
+        expected_delays = {'0': '0-100',
+                           '02': '100-500',
+                           '06': '500-1000',
+                           '1': '1000-inf'}
+
+        for location, delay in expected_delays.items():
+            current_timings = Base._get_current_stat("timings")
+            if current_timings.get(location):
+                current_counter = current_timings[location][delay]
+            else:
+                current_counter = 0
+            total_counter = current_timings['_total'][delay]
+            requests.get(urljoin(HOST, '%s' % location))
+            new_counter = Base._get_current_stat("timings")[location][delay]
+            new_total = Base._get_current_stat("timings")['_total'][delay]
+
+            self.assertEqual(new_counter - current_counter, 1)
+            self.assertEqual(new_total - total_counter, 1)
 
 if __name__ == '__main__':
     unittest.main()
