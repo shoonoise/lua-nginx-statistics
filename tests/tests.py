@@ -24,14 +24,15 @@ class Base(unittest.TestCase):
             current_statuses = Base._get_current_stat("status")
             status_class = "%sxx" % location[0]
 
-            if current_statuses.get(location):
+            if location in current_statuses:
                 current_counter = current_statuses[location][status_class]
             else:
                 current_counter = 0
             total_counter = current_statuses['_total'][status_class]
             requests.get(urljoin(HOST, '%s' % location), allow_redirects=False)
-            new_counter = Base._get_current_stat("status")[location][status_class]
-            new_total = Base._get_current_stat("status")['_total'][status_class]
+            new_statuses = Base._get_current_stat("status")
+            new_counter = new_statuses[location][status_class]
+            new_total = new_statuses['_total'][status_class]
 
             self.assertEqual(new_counter - current_counter, 1)
             self.assertEqual(new_total - total_counter, 1)
@@ -49,14 +50,15 @@ class Base(unittest.TestCase):
 
         for location, delay in expected_delays.items():
             current_timings = Base._get_current_stat("timings")
-            if current_timings.get(location):
+            if location in current_timings:
                 current_counter = current_timings[location][delay]
             else:
                 current_counter = 0
             total_counter = current_timings['_total'][delay]
             requests.get(urljoin(HOST, '%s' % location))
-            new_counter = Base._get_current_stat("timings")[location][delay]
-            new_total = Base._get_current_stat("timings")['_total'][delay]
+            new_timings = Base._get_current_stat("timings")
+            new_counter = new_timings[location][delay]
+            new_total = new_timings['_total'][delay]
 
             self.assertEqual(new_counter - current_counter, 1)
             self.assertEqual(new_total - total_counter, 1)
