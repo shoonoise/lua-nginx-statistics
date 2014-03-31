@@ -1,6 +1,7 @@
 Nginx statistic module
 ===================
 [![Build Status](https://travis-ci.org/shoonoise/lua-nginx-statistics.svg?branch=master)](https://travis-ci.org/shoonoise/lua-nginx-statistics)
+[![Docker Repository on Quay.io](https://quay.io/repository/shoonoise/lua-nginx-statistics/status "Docker Repository on Quay.io")](https://quay.io/repository/shoonoise/lua-nginx-statistics)
 ## Overview
 
 Nginx Lua module to collect reply status counters.
