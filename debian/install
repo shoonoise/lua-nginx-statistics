@@ -1,0 +1,2 @@
+*.lua usr/share/nginx/
+static usr/share/nginx/www/

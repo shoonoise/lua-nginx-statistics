@@ -1,0 +1,15 @@
+Source: nginx-statistic
+Section: misc
+Priority: extra
+Maintainer: Alexander Kushnarev <avkushnarev@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.2
+Homepage: https://github.com/shoonoise/lua-nginx-statistics
+Vcs-Git: git://github.com/shoonoise/lua-nginx-statistics.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/nginx-statistic.git;a=summary
+
+Package: nginx-statistic
+Architecture: all
+Depends: ${misc:Depends}, liblua5.1-json
+Description: Collect nginx statistic 
+  Collect nginx reply statuses and request time statistics.
