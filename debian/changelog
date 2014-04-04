@@ -1,4 +1,4 @@
-lua-nginx-statistics (0.1-ppa1) precise; urgency=low
+lua-nginx-statistics (0.1ppa1) precise; urgency=low
 
   * Initial release
 
