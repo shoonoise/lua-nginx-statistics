@@ -3,10 +3,10 @@ Nginx statistic module
 [![Build Status](https://travis-ci.org/shoonoise/lua-nginx-statistics.svg?branch=master)](https://travis-ci.org/shoonoise/lua-nginx-statistics)
 ## Overview
 
-Nginx Lua module to collect reply status counters.
+Nginx Lua module to collect and show statistics.
 See `nginx.conf` for example.
 
-`collect_statuses.lua` module collect statistic counters for requests across location with `log_by_lua_file 'collect_stats.lua';` directive.
+`collect_statuses.lua` module collect statistics for requests across location with `log_by_lua_file 'collect_stats.lua';` directive.
 
 `show_stat.lua` response for JSON reply.
 
