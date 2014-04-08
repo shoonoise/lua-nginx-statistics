@@ -1,6 +1,6 @@
 Format: http://dep.debian.net/deps/dep5
-Upstream-Name: nginx-statistic
-Source: <https://github.com/shoonoise/lua-nginx-statistics>
+Upstream-Name: nginx-statistics
+Source: <https://github.com/yandex-sysmon/nginx-lua-stats>
 
 Files: debian/*
 Copyright: 2014 Alexander Kushnarev <avkushnarev@gmail.com>
